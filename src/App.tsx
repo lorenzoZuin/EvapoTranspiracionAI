@@ -295,7 +295,7 @@ const Contact = () => (
       </div>
 
       <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-zinc-100">
-        <form className="space-y-6">
+        <form action="https://formspree.io/f/mwvnnjpy" method="POST" className="space-y-6">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <label htmlFor="nombre" className="block text-sm font-semibold text-zinc-700">
@@ -304,6 +304,7 @@ const Contact = () => (
               <input 
                 type="text" 
                 id="nombre" 
+                name="nombre"
                 placeholder="Tu nombre"
                 className="w-full px-4 py-3 rounded-xl bg-zinc-50 border border-zinc-200 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all"
                 required
@@ -316,6 +317,7 @@ const Contact = () => (
               <input 
                 type="text" 
                 id="apellido" 
+                name="apellido"
                 placeholder="Tu apellido"
                 className="w-full px-4 py-3 rounded-xl bg-zinc-50 border border-zinc-200 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all"
                 required
@@ -332,6 +334,7 @@ const Contact = () => (
               <input 
                 type="email" 
                 id="email" 
+                name="email"
                 placeholder="tu@email.com"
                 className="w-full pl-12 pr-4 py-3 rounded-xl bg-zinc-50 border border-zinc-200 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all"
                 required
@@ -345,6 +348,7 @@ const Contact = () => (
             </label>
             <textarea 
               id="message" 
+              name="message"
               rows={4}
               placeholder="Cuéntanos cómo te gustaría colaborar..."
               className="w-full px-4 py-3 rounded-xl bg-zinc-50 border border-zinc-200 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all resize-none"
