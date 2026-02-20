@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { 
   Droplets, 
@@ -284,95 +284,158 @@ const Market = () => (
   </section>
 );
 
-const Contact = () => (
-  <section id="contacto" className="py-24 bg-zinc-50 relative overflow-hidden">
-    <div className="max-w-3xl mx-auto px-6 relative z-10">
-      <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold mb-6 text-zinc-900">Dejanos tu mensaje</h2>
-        <p className="text-lg text-zinc-600">
-          ¿Interesado en invertir o colaborar? Queremos escucharte.
-        </p>
+const Contact = () => {
+  const [formData, setFormData] = useState({
+    nombre: '',
+    apellido: '',
+    email: '',
+    message: ''
+  });
+  const [status, setStatus] = useState<string | null>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('submitting');
+    try {
+      const response = await fetch("https://formspree.io/f/mwvnnjpy", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(formData)
+      });
+      
+      if (response.ok) {
+        setStatus('success');
+        setFormData({ nombre: '', apellido: '', email: '', message: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      setStatus('error');
+    }
+  };
+
+  return (
+    <section id="contacto" className="py-24 bg-zinc-50 relative overflow-hidden">
+      <div className="max-w-3xl mx-auto px-6 relative z-10">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-6 text-zinc-900">Dejanos tu mensaje</h2>
+          <p className="text-lg text-zinc-600">
+            ¿Interesado en invertir o colaborar? Queremos escucharte.
+          </p>
+        </div>
+
+        <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-zinc-100">
+          {status === 'success' ? (
+             <div className="text-center py-12">
+               <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                 <ShieldCheck className="w-8 h-8 text-emerald-600" />
+               </div>
+               <h3 className="text-2xl font-bold text-zinc-900 mb-2">¡Mensaje Enviado!</h3>
+               <p className="text-zinc-600">Gracias por contactarnos! Te responderemos a la brevedad.</p>
+               <button 
+                 onClick={() => setStatus(null)}
+                 className="mt-6 px-6 py-2 text-emerald-600 font-semibold hover:bg-emerald-50 rounded-lg transition-colors"
+               >
+                 Enviar otro mensaje
+               </button>
+             </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <label htmlFor="nombre" className="block text-sm font-semibold text-zinc-700">
+                    Nombre
+                  </label>
+                  <input 
+                    type="text" 
+                    id="nombre" 
+                    name="nombre"
+                    value={formData.nombre}
+                    onChange={handleChange}
+                    placeholder="Tu nombre"
+                    className="w-full px-4 py-3 rounded-xl bg-zinc-50 border border-zinc-200 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all"
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="apellido" className="block text-sm font-semibold text-zinc-700">
+                    Apellido
+                  </label>
+                  <input 
+                    type="text" 
+                    id="apellido" 
+                    name="apellido"
+                    value={formData.apellido}
+                    onChange={handleChange}
+                    placeholder="Tu apellido"
+                    className="w-full px-4 py-3 rounded-xl bg-zinc-50 border border-zinc-200 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label htmlFor="email" className="block text-sm font-semibold text-zinc-700">
+                  Correo Electrónico
+                </label>
+                <div className="relative">
+                  <Mail className="absolute left-4 top-3.5 text-zinc-400 w-5 h-5" />
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="tu@email.com"
+                    className="w-full pl-12 pr-4 py-3 rounded-xl bg-zinc-50 border border-zinc-200 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all"
+                    required
+                  />
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <label htmlFor="message" className="block text-sm font-semibold text-zinc-700">
+                  Mensaje
+                </label>
+                <textarea 
+                  id="message" 
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows={4}
+                  placeholder="Cuéntanos cómo te gustaría colaborar..."
+                  className="w-full px-4 py-3 rounded-xl bg-zinc-50 border border-zinc-200 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all resize-none"
+                  required
+                ></textarea>
+              </div>
+
+              <button 
+                type="submit"
+                disabled={status === 'submitting'}
+                className="w-full py-4 bg-emerald-600 text-white rounded-xl font-bold hover:bg-emerald-700 transition-all shadow-lg hover:shadow-emerald-200 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+              >
+                {status === 'submitting' ? 'Enviando...' : 'Enviar Mensaje'} <ChevronRight className="w-5 h-5" />
+              </button>
+              {status === 'error' && (
+                <p className="text-red-500 text-center text-sm">Hubo un error al enviar el mensaje. Por favor intenta nuevamente.</p>
+              )}
+            </form>
+          )}
+        </div>
       </div>
-
-      <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-zinc-100">
-        <form action="https://formspree.io/f/mwvnnjpy" method="POST" className="space-y-6">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <label htmlFor="nombre" className="block text-sm font-semibold text-zinc-700">
-                Nombre
-              </label>
-              <input 
-                type="text" 
-                id="nombre" 
-                name="nombre"
-                placeholder="Tu nombre"
-                className="w-full px-4 py-3 rounded-xl bg-zinc-50 border border-zinc-200 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all"
-                required
-              />
-            </div>
-            <div className="space-y-2">
-              <label htmlFor="apellido" className="block text-sm font-semibold text-zinc-700">
-                Apellido
-              </label>
-              <input 
-                type="text" 
-                id="apellido" 
-                name="apellido"
-                placeholder="Tu apellido"
-                className="w-full px-4 py-3 rounded-xl bg-zinc-50 border border-zinc-200 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all"
-                required
-              />
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <label htmlFor="email" className="block text-sm font-semibold text-zinc-700">
-              Correo Electrónico
-            </label>
-            <div className="relative">
-              <Mail className="absolute left-4 top-3.5 text-zinc-400 w-5 h-5" />
-              <input 
-                type="email" 
-                id="email" 
-                name="email"
-                placeholder="tu@email.com"
-                className="w-full pl-12 pr-4 py-3 rounded-xl bg-zinc-50 border border-zinc-200 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all"
-                required
-              />
-            </div>
-          </div>
-          
-          <div className="space-y-2">
-            <label htmlFor="message" className="block text-sm font-semibold text-zinc-700">
-              Mensaje
-            </label>
-            <textarea 
-              id="message" 
-              name="message"
-              rows={4}
-              placeholder="Cuéntanos cómo te gustaría colaborar..."
-              className="w-full px-4 py-3 rounded-xl bg-zinc-50 border border-zinc-200 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all resize-none"
-              required
-            ></textarea>
-          </div>
-
-          <button 
-            type="submit"
-            className="w-full py-4 bg-emerald-600 text-white rounded-xl font-bold hover:bg-emerald-700 transition-all shadow-lg hover:shadow-emerald-200 flex items-center justify-center gap-2"
-          >
-            Enviar Mensaje <ChevronRight className="w-5 h-5" />
-          </button>
-        </form>
+      
+      {/* Decorative background elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-64 h-64 bg-emerald-100 rounded-full blur-3xl opacity-40"></div>
+        <div className="absolute bottom-20 right-10 w-64 h-64 bg-blue-100 rounded-full blur-3xl opacity-40"></div>
       </div>
-    </div>
-    
-    {/* Decorative background elements */}
-    <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-      <div className="absolute top-20 left-10 w-64 h-64 bg-emerald-100 rounded-full blur-3xl opacity-40"></div>
-      <div className="absolute bottom-20 right-10 w-64 h-64 bg-blue-100 rounded-full blur-3xl opacity-40"></div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 const Footer = () => (
   <footer className="py-20 bg-white border-t border-zinc-100">
