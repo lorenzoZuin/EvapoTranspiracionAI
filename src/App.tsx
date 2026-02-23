@@ -177,91 +177,6 @@ const Problem = () => (
   </section>
 );
 
-const Solution = () => (
-  <section id="solucion" className="py-24 bg-white">
-    <div className="max-w-7xl mx-auto px-6">
-      <div className="text-center mb-20">
-        <h2 className="text-4xl font-bold mb-4 text-zinc-900">Nuestra Ciencia: Fusión de Datos e IA</h2>
-        <p className="text-xl text-zinc-600 max-w-3xl mx-auto">
-          No solo estimamos, predecimos. Combinamos el estándar de ET de la agronomía con el poder del Gradient Boosting.
-        </p>
-      </div>
-
-      <div className="grid md:grid-cols-3 gap-8">
-        {[
-          {
-            icon: <Satellite className="w-8 h-8 text-emerald-600" />,
-            title: "NASA Power Integration",
-            desc: "Extracción automatizada de radiación solar, temperatura y humedad satelital con cobertura global."
-          },
-          {
-            icon: <Cpu className="w-8 h-8 text-emerald-600" />,
-            title: "XGBoost Optimized",
-            desc: "Algoritmos de Gradient Boosting entrenados con ingeniería de características avanzada (VPD, ciclos temporales)."
-          },
-          {
-            icon: <ShieldCheck className="w-8 h-8 text-emerald-600" />,
-            title: "Confiabilidad",
-            desc: "Nuestros modelos se calibran con muchas iteraciones para que las mediciones sean lo más precisas posibles."
-          }
-        ].map((feature, i) => (
-          <motion.div 
-            key={i}
-            whileHover={{ y: -10 }}
-            className="p-8 rounded-3xl bg-zinc-50 border border-zinc-100 hover:shadow-xl transition-all"
-          >
-            <div className="mb-6">{feature.icon}</div>
-            <h3 className="text-xl font-bold mb-4 text-zinc-900">{feature.title}</h3>
-            <p className="text-zinc-600 leading-relaxed">{feature.desc}</p>
-          </motion.div>
-        ))}
-      </div>
-
-      <div className="mt-20 p-12 bg-emerald-900 rounded-[3rem] text-white relative overflow-hidden">
-        <div className="relative z-10 flex flex-col lg:flex-row items-center gap-12">
-          <div className="flex-1">
-            <h3 className="text-3xl font-bold mb-6">Escalabilidad Sin Estaciones</h3>
-            <p className="text-emerald-100 text-lg mb-8">
-              Nuestra tecnología permite ofrecer servicios de precisión en cualquier coordenada del planeta, eliminando la barrera del costo de implementación y mantenimiento de hardware dedicado.
-            </p>
-            <ul className="space-y-4">
-              {[
-                "Predicciones horarias de alta resolución",
-                "Integración vía API para sistemas de riego"
-              ].map((item, i) => (
-                <li key={i} className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center">
-                    <Zap className="w-3 h-3 text-white" />
-                  </div>
-                  <span className="font-medium">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="flex-1 w-full">
-            {/* Visual Suggestion: Data flow diagram or code snippet visualization */}
-            <div className="bg-zinc-950 p-6 rounded-2xl font-mono text-sm border border-emerald-500/30 shadow-2xl">
-              <div className="flex gap-2 mb-4">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              </div>
-              <p className="text-emerald-500 mb-2"># ML Model Inference</p>
-              <p className="text-zinc-400">import xgboost as xgb</p>
-              <p className="text-zinc-400">model = xgb.Booster()</p>
-              <p className="text-zinc-400">model.load_model('et_v2.json')</p>
-              <p className="text-zinc-400 mt-4"># Input: NASA + FAO-56 Features</p>
-              <p className="text-zinc-400">features = preprocess(nasa_data, coords)</p>
-              <p className="text-zinc-400">prediction = model.predict(features)</p>
-              <p className="text-emerald-400 mt-4 font-bold">{">"} ETc Predicted: 4.82 mm/day</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
 const Utility = () => (
   <section id="utilidad" className="py-24 bg-zinc-50 overflow-hidden">
     <div className="max-w-7xl mx-auto px-6">
@@ -370,6 +285,91 @@ const Utility = () => (
             </div>
           </div>
         </motion.div>
+      </div>
+    </div>
+  </section>
+);
+
+const Solution = () => (
+  <section id="solucion" className="py-24 bg-white">
+    <div className="max-w-7xl mx-auto px-6">
+      <div className="text-center mb-20">
+        <h2 className="text-4xl font-bold mb-4 text-zinc-900">Nuestra Ciencia: Fusión de Datos e IA</h2>
+        <p className="text-xl text-zinc-600 max-w-3xl mx-auto">
+          No solo estimamos, predecimos. Combinamos el estándar de ET de la agronomía con el poder del Gradient Boosting.
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-3 gap-8">
+        {[
+          {
+            icon: <Satellite className="w-8 h-8 text-emerald-600" />,
+            title: "NASA Power Integration",
+            desc: "Extracción automatizada de radiación solar, temperatura y humedad satelital con cobertura global."
+          },
+          {
+            icon: <Cpu className="w-8 h-8 text-emerald-600" />,
+            title: "XGBoost Optimized",
+            desc: "Algoritmos de Gradient Boosting entrenados con ingeniería de características avanzada (VPD, ciclos temporales)."
+          },
+          {
+            icon: <ShieldCheck className="w-8 h-8 text-emerald-600" />,
+            title: "Confiabilidad",
+            desc: "Nuestros modelos se calibran con muchas iteraciones para que las mediciones sean lo más precisas posibles."
+          }
+        ].map((feature, i) => (
+          <motion.div 
+            key={i}
+            whileHover={{ y: -10 }}
+            className="p-8 rounded-3xl bg-zinc-50 border border-zinc-100 hover:shadow-xl transition-all"
+          >
+            <div className="mb-6">{feature.icon}</div>
+            <h3 className="text-xl font-bold mb-4 text-zinc-900">{feature.title}</h3>
+            <p className="text-zinc-600 leading-relaxed">{feature.desc}</p>
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="mt-20 p-12 bg-emerald-900 rounded-[3rem] text-white relative overflow-hidden">
+        <div className="relative z-10 flex flex-col lg:flex-row items-center gap-12">
+          <div className="flex-1">
+            <h3 className="text-3xl font-bold mb-6">Escalabilidad Sin Estaciones</h3>
+            <p className="text-emerald-100 text-lg mb-8">
+              Nuestra tecnología permite ofrecer servicios de precisión en cualquier coordenada del planeta, eliminando la barrera del costo de implementación y mantenimiento de hardware dedicado.
+            </p>
+            <ul className="space-y-4">
+              {[
+                "Predicciones horarias de alta resolución",
+                "Integración vía API para sistemas de riego"
+              ].map((item, i) => (
+                <li key={i} className="flex items-center gap-3">
+                  <div className="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center">
+                    <Zap className="w-3 h-3 text-white" />
+                  </div>
+                  <span className="font-medium">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="flex-1 w-full">
+            {/* Visual Suggestion: Data flow diagram or code snippet visualization */}
+            <div className="bg-zinc-950 p-6 rounded-2xl font-mono text-sm border border-emerald-500/30 shadow-2xl">
+              <div className="flex gap-2 mb-4">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+              </div>
+              <p className="text-emerald-500 mb-2"># ML Model Inference</p>
+              <p className="text-zinc-400">import xgboost as xgb</p>
+              <p className="text-zinc-400">model = xgb.Booster()</p>
+              <p className="text-zinc-400">model.load_model('et_v2.json')</p>
+              <p className="text-zinc-400 mt-4"># Input: NASA + FAO-56 Features</p>
+              <p className="text-zinc-400">features = preprocess(nasa_data, coords)</p>
+              <p className="text-zinc-400">prediction = model.predict(features)</p>
+              <p className="text-emerald-400 mt-4 font-bold">{">"} ETc Predicted: 4.82 mm/day</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -571,7 +571,7 @@ const Footer = () => (
         </div>
         <div>
           <h4 className="font-bold text-zinc-900 mb-6">Contacto Directo</h4>
-          <a href="mailto:lorenzuin@gmail.com" className="flex items-center gap-3 text-zinc-600 hover:text-emerald-600 transition-colors">
+          <a className="flex items-center gap-3 text-zinc-600 hover:text-emerald-600 transition-colors">
             <Mail className="w-5 h-5" /> lorenzuin@gmail.com
           </a>
         </div>
@@ -579,11 +579,6 @@ const Footer = () => (
       </div>
       <div className="pt-8 border-t border-zinc-100 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-zinc-400">
         <p>© 2026 EvapoTranspiración AI. Todos los derechos reservados.</p>
-        <div className="flex gap-6">
-          <a href="#" className="hover:text-emerald-600">LinkedIn</a>
-          <a href="#" className="hover:text-emerald-600">Twitter</a>
-          <a href="#" className="hover:text-emerald-600">GitHub</a>
-        </div>
       </div>
     </div>
   </footer>
@@ -595,8 +590,8 @@ export default function App() {
       <Navbar />
       <Hero />
       <Problem />
-      <Solution />
       <Utility />
+      <Solution />
       <Market />
       <section className="py-20 bg-emerald-600 text-white text-center">
         <div className="max-w-3xl mx-auto px-6">
