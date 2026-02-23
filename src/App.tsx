@@ -31,6 +31,7 @@ const Navbar = () => (
       <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-600">
         <a href="#problema" className="hover:text-emerald-600 transition-colors">Problema</a>
         <a href="#solucion" className="hover:text-emerald-600 transition-colors">Tecnología</a>
+        <a href="#utilidad" className="hover:text-emerald-600 transition-colors">Utilidad</a>
         <a href="#mercado" className="hover:text-emerald-600 transition-colors">Mercado</a>
         <a href="#contacto" className="px-4 py-2 bg-zinc-900 text-white rounded-full hover:bg-zinc-800 transition-all">
           Contactar Inversores
@@ -122,6 +123,9 @@ const Problem = () => (
           <h2 className="text-4xl font-bold mb-8 leading-tight">
             <span className="text-emerald-400">Mejoramos</span> la forma de obtener información.
           </h2>
+          
+        </div>
+        <div>
           <div className="space-y-8">
             <div className="flex gap-4">
               <div className="w-12 h-12 rounded-full bg-zinc-800 flex items-center justify-center shrink-0">
@@ -143,7 +147,7 @@ const Problem = () => (
             </div>
           </div>
         </div>
-        <div className="bg-zinc-800 p-8 rounded-3xl border border-zinc-700">
+        {/* <div className="bg-zinc-800 p-8 rounded-3xl border border-zinc-700">
           <h4 className="text-sm font-bold uppercase tracking-widest text-emerald-400 mb-6">Impacto del Problema</h4>
           <div className="space-y-6">
             {[
@@ -167,7 +171,7 @@ const Problem = () => (
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   </section>
@@ -197,8 +201,8 @@ const Solution = () => (
           },
           {
             icon: <ShieldCheck className="w-8 h-8 text-emerald-600" />,
-            title: "FAO-56 Validation",
-            desc: "Nuestros modelos se calibran bajo el estándar Penman-Monteith, garantizando rigor científico."
+            title: "Confiabilidad",
+            desc: "Nuestros modelos se calibran con muchas iteraciones para que las mediciones sean lo más precisas posibles."
           }
         ].map((feature, i) => (
           <motion.div 
@@ -253,6 +257,119 @@ const Solution = () => (
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+);
+
+const Utility = () => (
+  <section id="utilidad" className="py-24 bg-zinc-50 overflow-hidden">
+    <div className="max-w-7xl mx-auto px-6">
+      <div className="text-center mb-16">
+        <motion.div
+           initial={{ opacity: 0, y: 20 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true }}
+           transition={{ duration: 0.6 }}
+        >
+          <span className="inline-block px-4 py-1.5 mb-4 text-xs font-bold tracking-widest uppercase bg-emerald-100 text-emerald-700 rounded-full">
+            Casos de Uso
+          </span>
+          <h2 className="text-4xl font-bold mb-6 text-zinc-900">Ingeniería de Datos Aplicada al Campo</h2>
+          <p className="text-xl text-zinc-600 max-w-3xl mx-auto">
+            Desde la microgestión diaria del riego hasta la macroestrategia de siembra, nuestra solución adapta su análisis a las necesidades críticas de cada cultivo.
+          </p>
+        </motion.div>
+      </div>
+
+      <div className="grid lg:grid-cols-2 gap-8">
+        {/* Caso 1: Cultivos Intensivos (Papa) */}
+        <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="group relative h-[500px] rounded-3xl overflow-hidden shadow-xl"
+        >
+          <div className="absolute inset-0">
+            <img 
+              src="https://images.unsplash.com/photo-1549024449-d6968d2a435f?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dhttps://images.unsplash.com/photo-1549024449-d6968d2a435f?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+              alt="Cultivo de Papa" 
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/60 to-transparent opacity-90"></div>
+          </div>
+          
+          <div className="relative h-full p-8 flex flex-col justify-end">
+            <div className="mb-4">
+              <div className="w-12 h-12 bg-emerald-600 rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-emerald-900/20">
+                <Droplets className="text-white w-6 h-6" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2">Optimización Hídrica en Papa</h3>
+              <p className="text-emerald-300 font-medium text-sm uppercase tracking-wider">Riego de Precisión & Eficiencia Energética</p>
+            </div>
+            
+            <p className="text-zinc-300 mb-6 leading-relaxed">
+              Implementación de algoritmos de balance hídrico en tiempo real para determinar la lámina de riego exacta. 
+              Minimizamos la huella hídrica y el costo energético de bombeo, evitando tanto el estrés hídrico como la lixiviación de nutrientes por sobreriego.
+            </p>
+
+            <div className="grid grid-cols-2 gap-4 border-t border-white/10 pt-6">
+              <div>
+                <span className="block text-2xl font-bold text-white">35%</span>
+                <span className="text-xs text-zinc-400 uppercase">Ahorro de Agua</span>
+              </div>
+              <div>
+                <span className="block text-2xl font-bold text-white">ROI</span>
+                <span className="text-xs text-zinc-400 uppercase">Incremento Neto</span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Caso 2: Cultivos Extensivos (Trigo/Soja) */}
+        <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="group relative h-[500px] rounded-3xl overflow-hidden shadow-xl"
+        >
+          <div className="absolute inset-0">
+            <img 
+              src="https://images.unsplash.com/photo-1595976281013-8024ecc02575?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+              alt="Cultivo de Trigo" 
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/60 to-transparent opacity-90"></div>
+          </div>
+          
+          <div className="relative h-full p-8 flex flex-col justify-end">
+            <div className="mb-4">
+              <div className="w-12 h-12 bg-amber-600 rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-amber-900/20">
+                <BarChart3 className="text-white w-6 h-6" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2">Análisis de Ciclo en Extensivos</h3>
+              <p className="text-amber-300 font-medium text-sm uppercase tracking-wider">Soja & Trigo (Secano)</p>
+            </div>
+            
+            <p className="text-zinc-300 mb-6 leading-relaxed">
+              Evaluación retrospectiva de la fenología del cultivo cruzada con datos climáticos históricos. 
+              Permite ajustar las ventanas de siembra futuras para sincronizar las etapas críticas del cultivo con la oferta hídrica probabilística de la región.
+            </p>
+
+            <div className="grid grid-cols-2 gap-4 border-t border-white/10 pt-6">
+              <div>
+                <span className="block text-2xl font-bold text-white">Data-Driven</span>
+                <span className="text-xs text-zinc-400 uppercase">Toma de Decisiones</span>
+              </div>
+              <div>
+                <span className="block text-2xl font-bold text-white">+18%</span>
+                <span className="text-xs text-zinc-400 uppercase">Potencial de Rinde</span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </div>
   </section>
@@ -479,19 +596,14 @@ export default function App() {
       <Hero />
       <Problem />
       <Solution />
+      <Utility />
       <Market />
-      <section className="py-24 bg-emerald-600 text-white text-center">
+      <section className="py-20 bg-emerald-600 text-white text-center">
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="text-4xl font-bold mb-8">¿Listo para escalar el futuro del riego?</h2>
           <p className="text-xl text-emerald-100 mb-10">
             Estamos abriendo nuestra ronda de inversión Seed. Únete a la revolución AgTech.
           </p>
-          <a 
-            href="#contacto" 
-            className="inline-block px-10 py-5 bg-white text-emerald-600 rounded-full font-bold text-lg hover:bg-emerald-50 transition-all shadow-xl"
-          >
-            Solicitar Pitch Deck
-          </a>
         </div>
       </section>
       <Contact />
