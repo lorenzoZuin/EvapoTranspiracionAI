@@ -16,7 +16,8 @@ import {
   ChevronRight,
   ShieldCheck,
   BarChart3,
-  Zap
+  Zap,
+  Linkedin
 } from 'lucide-react';
 
 const Navbar = () => (
@@ -34,7 +35,7 @@ const Navbar = () => (
         <a href="#utilidad" className="hover:text-emerald-600 transition-colors">Utilidad</a>
         <a href="#mercado" className="hover:text-emerald-600 transition-colors">Mercado</a>
         <a href="#contacto" className="px-4 py-2 bg-zinc-900 text-white rounded-full hover:bg-zinc-800 transition-all">
-          Contactar Inversores
+          Contactar con Nosotros
         </a>
       </div>
     </div>
@@ -573,6 +574,15 @@ const Footer = () => (
           <h4 className="font-bold text-zinc-900 mb-6">Contacto Directo</h4>
           <a className="flex items-center gap-3 text-zinc-600 hover:text-emerald-600 transition-colors">
             <Mail className="w-5 h-5" /> lorenzuin@gmail.com
+          </a>
+          <a className="flex items-center gap-3 text-zinc-600 hover:text-emerald-600 transition-colors">
+            <Mail className="w-5 h-5" /> pedro7calvo@gmail.com
+          </a>
+          <a href="https://www.linkedin.com/in/lorenzozuin/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-zinc-600 hover:text-emerald-600 transition-colors mt-4">
+            <Linkedin className="w-5 h-5" /> Lorenzo Zuin
+          </a>
+          <a href="https://www.linkedin.com/in/pedro-calvo-b73005295/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-zinc-600 hover:text-emerald-600 transition-colors">
+            <Linkedin className="w-5 h-5" /> Pedro Calvo
           </a>
         </div>
         
