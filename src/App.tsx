@@ -27,7 +27,7 @@ const Navbar = () => (
         <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center">
           <Droplets className="text-white w-5 h-5" />
         </div>
-        <span className="font-bold text-xl tracking-tight text-zinc-900">EvapoTranspiración<span className="text-emerald-600">AI</span></span>
+        <span className="font-bold text-xl tracking-tight text-zinc-900">Prisma <span className="text-emerald-600">Ag</span>tech</span>
       </div>
       <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-600">
         <a href="#problema" className="hover:text-emerald-600 transition-colors">Problema</a>
@@ -564,7 +564,7 @@ const Footer = () => (
             <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center">
               <Droplets className="text-white w-5 h-5" />
             </div>
-            <span className="font-bold text-xl tracking-tight text-zinc-900">EvapoTranspiración<span className="text-emerald-600">AI</span></span>
+            <span className="font-bold text-xl tracking-tight text-zinc-900">Prisma <span className="text-emerald-600">Ag</span>tech</span>
           </div>
           <p className="text-zinc-500 leading-relaxed">
             Liderando la transición hacia una agricultura resiliente y basada en datos. Tecnología argentina con visión global.
@@ -588,7 +588,7 @@ const Footer = () => (
         
       </div>
       <div className="pt-8 border-t border-zinc-100 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-zinc-400">
-        <p>© 2026 EvapoTranspiración AI. Todos los derechos reservados.</p>
+        <p>© 2026 Prisma Agtech. Todos los derechos reservados.</p>
       </div>
     </div>
   </footer>
