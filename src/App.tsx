@@ -20,6 +20,50 @@ import {
   Linkedin
 } from 'lucide-react';
 
+const potatoEvapotranspiration = [
+  { day: 1, et: 4.1, irrigation: null },
+  { day: 2, et: 4.3, irrigation: null },
+  { day: 3, et: 4.8, irrigation: 14.5 },
+  { day: 4, et: 4.4, irrigation: null },
+  { day: 5, et: 4.7, irrigation: null },
+  { day: 6, et: 5.0, irrigation: 15.2 },
+  { day: 7, et: 4.6, irrigation: null },
+  { day: 8, et: 4.9, irrigation: null },
+  { day: 9, et: 5.2, irrigation: 15.8 },
+  { day: 10, et: 4.8, irrigation: null },
+  { day: 11, et: 5.1, irrigation: null },
+  { day: 12, et: 5.4, irrigation: 16.4 },
+  { day: 13, et: 5.0, irrigation: null },
+  { day: 14, et: 5.2, irrigation: null },
+  { day: 15, et: 5.6, irrigation: 16.8 },
+  { day: 16, et: 5.1, irrigation: null },
+  { day: 17, et: 5.3, irrigation: null },
+  { day: 18, et: 5.7, irrigation: 17.0 },
+  { day: 19, et: 5.2, irrigation: null },
+  { day: 20, et: 5.5, irrigation: null },
+  { day: 21, et: 5.9, irrigation: 17.4 },
+  { day: 22, et: 5.3, irrigation: null },
+  { day: 23, et: 5.6, irrigation: null },
+  { day: 24, et: 6.0, irrigation: 17.9 },
+  { day: 25, et: 5.4, irrigation: null },
+  { day: 26, et: 5.7, irrigation: null },
+  { day: 27, et: 6.1, irrigation: 18.3 },
+  { day: 28, et: 5.6, irrigation: null },
+  { day: 29, et: 5.8, irrigation: null },
+  { day: 30, et: 6.2, irrigation: 18.6 }
+];
+
+const secanoYieldByWindow = [
+  { window: 'Ago temprano', yield: 4.2, best: false },
+  { window: 'Ago tardío', yield: 4.8, best: false },
+  { window: 'Sep temprano', yield: 5.4, best: true },
+  { window: 'Sep tardío', yield: 4.9, best: false },
+  { window: 'Oct temprano', yield: 4.4, best: false }
+];
+
+const maxPotatoEt = Math.max(...potatoEvapotranspiration.map((item) => item.et));
+const maxSecanoYield = Math.max(...secanoYieldByWindow.map((item) => item.yield));
+
 const Navbar = () => (
   <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-zinc-100">
     <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -200,92 +244,146 @@ const Utility = () => (
 
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Caso 1: Cultivos Intensivos (Papa) */}
-        <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+        <div className="space-y-4">
+          <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
             className="group relative h-[500px] rounded-3xl overflow-hidden shadow-xl"
-        >
-          <div className="absolute inset-0">
-            <img 
-              src="https://images.unsplash.com/photo-1549024449-d6968d2a435f?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dhttps://images.unsplash.com/photo-1549024449-d6968d2a435f?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-              alt="Cultivo de Papa" 
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/60 to-transparent opacity-90"></div>
-          </div>
-          
-          <div className="relative h-full p-8 flex flex-col justify-end">
-            <div className="mb-4">
-              <div className="w-12 h-12 bg-emerald-600 rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-emerald-900/20">
-                <Droplets className="text-white w-6 h-6" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-2">Optimización Hídrica en Papa</h3>
-              <p className="text-emerald-300 font-medium text-sm uppercase tracking-wider">Riego de Precisión & Eficiencia Energética</p>
+          >
+            <div className="absolute inset-0">
+              <img 
+                src="https://images.unsplash.com/photo-1549024449-d6968d2a435f?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dhttps://images.unsplash.com/photo-1549024449-d6968d2a435f?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                alt="Cultivo de Papa" 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/60 to-transparent opacity-90"></div>
             </div>
             
-            <p className="text-zinc-300 mb-6 leading-relaxed">
-              Implementación de algoritmos de balance hídrico en tiempo real para determinar la lámina de riego exacta. 
-              Minimizamos la huella hídrica y el costo energético de bombeo, evitando tanto el estrés hídrico como la lixiviación de nutrientes por sobreriego.
-            </p>
-
-            <div className="grid grid-cols-2 gap-4 border-t border-white/10 pt-6">
-              <div>
-                <span className="block text-2xl font-bold text-white">35%</span>
-                <span className="text-xs text-zinc-400 uppercase">Ahorro de Agua</span>
+            <div className="relative h-full p-8 flex flex-col justify-end">
+              <div className="mb-4">
+                <div className="w-12 h-12 bg-emerald-600 rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-emerald-900/20">
+                  <Droplets className="text-white w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-2">Optimización Hídrica en Papa</h3>
+                <p className="text-emerald-300 font-medium text-sm uppercase tracking-wider">Riego de Precisión & Eficiencia Energética</p>
               </div>
-              <div>
-                <span className="block text-2xl font-bold text-white">ROI</span>
-                <span className="text-xs text-zinc-400 uppercase">Incremento Neto</span>
+              
+              <p className="text-zinc-300 mb-8 leading-relaxed">
+                Implementación de algoritmos de balance hídrico en tiempo real para determinar la lámina de riego exacta. 
+                Minimizamos la huella hídrica y el costo energético de bombeo, evitando tanto el estrés hídrico como la lixiviación de nutrientes por sobreriego.
+              </p>
+
+              <div className="grid grid-cols-2 gap-4 border-t border-white/10 pt-6">
+                <div>
+                  <span className="block text-2xl font-bold text-white">35%</span>
+                  <span className="text-xs text-zinc-400 uppercase">Ahorro de Agua</span>
+                </div>
+                <div>
+                  <span className="block text-2xl font-bold text-white">ROI</span>
+                  <span className="text-xs text-zinc-400 uppercase">Incremento Neto</span>
+                </div>
               </div>
             </div>
+          </motion.div>
+
+          <div className="rounded-2xl bg-zinc-900 border border-zinc-800 p-5 shadow-lg h-[320px]">
+            <div className="flex items-center justify-between mb-3">
+              <p className="text-[11px] uppercase tracking-wider text-zinc-300 font-semibold">Evapotranspiración y riego (mm)</p>
+              <div className="flex items-center gap-3 text-[10px] text-zinc-300">
+                <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>ET diaria</span>
+                <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-sky-300"></span>Riego (cada 3 días)</span>
+              </div>
+            </div>
+            <div className="h-56 flex items-end gap-1.5">
+              {potatoEvapotranspiration.map((item) => {
+                const etHeight = `${Math.max((item.et / maxPotatoEt) * 100, 8)}%`;
+                const irrigationHeight = item.irrigation ? `${Math.max((item.irrigation / 19) * 100, 10)}%` : '0%';
+                return (
+                  <div key={item.day} className="flex-1 min-w-0 h-full flex items-end justify-center gap-[2px]">
+                    <div className="w-1.5 md:w-2 bg-emerald-400/90 rounded-t-full" style={{ height: etHeight }}></div>
+                    {item.irrigation && <div className="w-1.5 md:w-2 bg-sky-300/95 rounded-t-full" style={{ height: irrigationHeight }}></div>}
+                  </div>
+                );
+              })}
+            </div>
+            <div className="mt-2 grid grid-cols-10 text-[10px] text-zinc-400">
+              {potatoEvapotranspiration
+                .filter((item) => item.day % 3 === 0)
+                .map((item) => (
+                  <span key={item.day} className="text-center">D{item.day}</span>
+                ))}
+            </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Caso 2: Cultivos Extensivos (Trigo/Soja) */}
-        <motion.div 
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+        <div className="space-y-4">
+          <motion.div 
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             className="group relative h-[500px] rounded-3xl overflow-hidden shadow-xl"
-        >
-          <div className="absolute inset-0">
-            <img 
-              src="https://images.unsplash.com/photo-1595976281013-8024ecc02575?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-              alt="Cultivo de Trigo" 
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/60 to-transparent opacity-90"></div>
-          </div>
-          
-          <div className="relative h-full p-8 flex flex-col justify-end">
-            <div className="mb-4">
-              <div className="w-12 h-12 bg-amber-600 rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-amber-900/20">
-                <BarChart3 className="text-white w-6 h-6" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-2">Análisis de Ciclo en Extensivos</h3>
-              <p className="text-amber-300 font-medium text-sm uppercase tracking-wider">Soja & Trigo (Secano)</p>
+          >
+            <div className="absolute inset-0">
+              <img 
+                src="https://images.unsplash.com/photo-1595976281013-8024ecc02575?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                alt="Cultivo de Trigo" 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/60 to-transparent opacity-90"></div>
             </div>
             
-            <p className="text-zinc-300 mb-6 leading-relaxed">
-              Evaluación retrospectiva de la fenología del cultivo cruzada con datos climáticos históricos. 
-              Permite ajustar las ventanas de siembra futuras para sincronizar las etapas críticas del cultivo con la oferta hídrica probabilística de la región.
-            </p>
-
-            <div className="grid grid-cols-2 gap-4 border-t border-white/10 pt-6">
-              <div>
-                <span className="block text-2xl font-bold text-white">Data-Driven</span>
-                <span className="text-xs text-zinc-400 uppercase">Toma de Decisiones</span>
+            <div className="relative h-full p-8 flex flex-col justify-end">
+              <div className="mb-4">
+                <div className="w-12 h-12 bg-amber-600 rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-amber-900/20">
+                  <BarChart3 className="text-white w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-2">Análisis de Ciclo en Extensivos</h3>
+                <p className="text-amber-300 font-medium text-sm uppercase tracking-wider">Soja & Trigo (Secano)</p>
               </div>
-              <div>
-                <span className="block text-2xl font-bold text-white">+18%</span>
-                <span className="text-xs text-zinc-400 uppercase">Potencial de Rinde</span>
+              
+              <p className="text-zinc-300 mb-8 leading-relaxed">
+                Evaluación retrospectiva de la fenología del cultivo cruzada con datos climáticos históricos. 
+                Permite ajustar las ventanas de siembra futuras para sincronizar las etapas críticas del cultivo con la oferta hídrica probabilística de la región.
+              </p>
+
+              <div className="grid grid-cols-2 gap-4 border-t border-white/10 pt-6">
+                <div>
+                  <span className="block text-2xl font-bold text-white">Data-Driven</span>
+                  <span className="text-xs text-zinc-400 uppercase">Toma de Decisiones</span>
+                </div>
+                <div>
+                  <span className="block text-2xl font-bold text-white">+18%</span>
+                  <span className="text-xs text-zinc-400 uppercase">Potencial de Rinde</span>
+                </div>
               </div>
             </div>
+          </motion.div>
+
+          <div className="rounded-2xl bg-zinc-900 border border-zinc-800 p-5 shadow-lg h-[320px]">
+            <p className="text-[11px] uppercase tracking-wider text-zinc-300 font-semibold mb-3">Rinde estimado por época de siembra (t/ha)</p>
+            <div className="h-56 flex flex-col justify-between">
+              {secanoYieldByWindow.map((item) => (
+                <div key={item.window} className="grid grid-cols-[82px_1fr_42px] items-center gap-3">
+                  <span className="text-[10px] text-zinc-300 uppercase tracking-wide">{item.window}</span>
+                  <div className="h-3 bg-white/10 rounded-full overflow-hidden">
+                    <div
+                      className={`h-full rounded-full ${item.best ? 'bg-emerald-400' : 'bg-amber-300'}`}
+                      style={{ width: `${(item.yield / maxSecanoYield) * 100}%` }}
+                    ></div>
+                  </div>
+                  <span className={`text-[11px] font-mono ${item.best ? 'text-emerald-300 font-bold' : 'text-zinc-300'}`}>
+                    {item.yield.toFixed(1)}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <p className="mt-3 text-[10px] text-emerald-300 uppercase tracking-wider font-semibold">Mejor ventana: Sep temprano</p>
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   </section>
